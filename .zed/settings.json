@@ -1,0 +1,107 @@
+{
+  "window_decorations": "client",
+  "tabs": {
+    "file_icons": false
+  },
+  "tab_bar": {
+    "show": false
+  },
+  "project_panel": {
+    "dock": "right",
+    "button": true
+  },
+  "scrollbar": {
+    "git_diff": false
+  },
+  "relative_line_numbers": "enabled",
+  "gutter": {
+    "line_numbers": true
+  },
+  "hover_popover_delay": 100,
+  "auto_signature_help": true,
+  "autoscroll_on_clicks": false,
+  "ui_font_family": "Fira Sans",
+  "buffer_font_family": "FiraCode Nerd Font Mono",
+  "ui_font_weight": 400.0,
+  "buffer_line_height": "comfortable",
+  "buffer_font_weight": 400.0,
+  "context_servers": {
+    "mcp-server-context7": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "context7_api_key": "REPLACE_WITH_CONTEXT7_API_KEY"
+      }
+    }
+  },
+  "agent": {
+    "default_profile": "write",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-haiku-4.5"
+    },
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "autosave": "on_focus_change",
+  "hard_tabs": true,
+  "auto_indent": false,
+  "show_whitespaces": "selection",
+  "icon_theme": "VSCode Icons for Zed (Dark)",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "formatter": {
+    "language_server": {
+      "name": "biome"
+    }
+  },
+  "lsp": {
+    "biome": {
+      "settings": {
+        "config_path": "<path>/biome.json",
+        "require_config_file": true
+      }
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "experimental": {
+          "classRegex": [
+            "\\.className\\s*[+]?=\\s*['\"]([^'\"]*)['\"]",
+            "\\.setAttributeNS\\(.*,\\s*['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
+            "\\.setAttribute\\(['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
+            "\\.classList\\.add\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.remove\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.toggle\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.contains\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.replace\\(\\s*['\"]([^'\"]*)['\"]",
+            "\\.classList\\.replace\\([^,)]+,\\s*['\"]([^'\"]*)['\"]"
+          ]
+        }
+      }
+    },
+    "vtsls": {
+      "settings": {
+        "typescript": { "tsserver": { "maxTsServerMemory": 16184 } },
+        "javascript": { "tsserver": { "maxTsServerMemory": 16184 } }
+      }
+    }
+  },
+  "languages": {
+    "JavaScript": { "formatter": "auto" },
+    "TypeScript": { "formatter": "auto" }
+  },
+  "code_actions_on_format": {
+    "source.fixAll.biome": true,
+    "source.organizeImports.biome": true
+  },
+  "base_keymap": "VSCode",
+  "ui_font_size": 18.0,
+  "buffer_font_size": 20.0,
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Catppuccin Mocha"
+  }
+}
