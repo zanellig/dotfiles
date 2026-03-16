@@ -1,0 +1,18 @@
+# Backup of /etc/pacman.d/cachyos-mirrorlist (auto-generated; safe to share)
+
+Server = https://us-mnz.soulharsh007.dev/cachyos/repo/$arch/$repo
+Server = https://cdn77.cachyos.org/repo/$arch/$repo
+Server = https://us.cachyos.org/repo/$arch/$repo
+Server = https://mirror.cachyos.org/repo/$arch/$repo
+Server = https://mirror.hb9hil.org/cachyos/repo/$arch/$repo
+Server = https://cachyos.doridian.net/repo/$arch/$repo
+Server = https://mirror.nju.edu.cn/cachyos/repo/$arch/$repo
+Server = https://aur.cachyos.org/repo/$arch/$repo
+Server = https://cdn.cachyos.org/repo/$arch/$repo
+Server = https://mirror.yandex.ru/cachyos/repo/$arch/$repo
+Server = https://no.mirror.cx/cachyos/repo/$arch/$repo
+Server = https://at.cachyos.org/repo/$arch/$repo
+Server = https://mirrors.ustc.edu.cn/cachyos/repo/$arch/$repo
+Server = https://cachyos.next-works.it/repo/$arch/$repo
+Server = https://mirror.limda.net/cachy/repo/$arch/$repo
+

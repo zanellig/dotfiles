@@ -1,0 +1,14 @@
+[Annotations]
+annotationToolType=7
+rectangleStrokeColor=255,0,0
+
+[ImageSave]
+lastImageSaveLocation=file://$HOME/Pictures/Screenshots/
+translatedScreenshotsFolder=Screenshots
+
+[VideoSave]
+translatedScreencastsFolder=Screencasts
+
+[ViewerWindow]
+1920x1080 screen: Window-Maximized=true
+
