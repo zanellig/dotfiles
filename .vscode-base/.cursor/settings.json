@@ -1,0 +1,48 @@
+{
+	"window.commandCenter": true,
+
+	// Telemetry
+	"telemetry.enableTelemetry": false,
+	"telemetry.enableCrashReporter": false,
+	"crashReporting.enabled": "off",
+
+	// Visual
+	"editor.fontLigatures": true,
+	"editor.cursorBlinking": "smooth",
+	"editor.cursorSmoothCaretAnimation": "on",
+	"editor.renderWhitespace": "trailing",
+	"breadcrumbs.enabled": false,
+	// "window.menuBarVisibility": "compact",
+	"workbench.tree.indent": 16,
+	"workbench.tree.enableStickyScroll": false,
+
+	// Functional
+	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmDelete": false,
+	"git.confirmSync": false,
+	"git.autofetch": true,
+	"git.openRepositoryInParentFolders": "never",
+	/* Careful with this one */
+	"json.schemaDownload.enable": true,
+
+	// Formatter
+	"editor.defaultFormatter": "biomejs.biome",
+	"biome.enabled": true,
+	"editor.formatOnSave": true,
+	"editor.tabSize": 2,
+	"editor.codeActionsOnSave": {
+		"source.organizeImports.biome": "always",
+		"source.fixAll.biome": "always"
+	},
+
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"javascript.preferences.quoteStyle": "single",
+	"typescript.preferences.quoteStyle": "single",
+	"[markdown]": {
+		"editor.formatOnPaste": true,
+		"editor.codeActionsOnSave": {
+			"source.fixAll.markdownlint": "always"
+		}
+	}
+}

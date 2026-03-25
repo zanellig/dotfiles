@@ -1,0 +1,32 @@
+// Place your key bindings in this file to override the defaults
+[
+	{
+		"key": "shift+escape",
+		"command": "workbench.action.toggleMaximizedPanel",
+		"when": "panelAlignment == 'center' || panelPosition != 'bottom' && panelPosition != 'top'"
+	},
+	{
+		"key": "ctrl+shift+space",
+		"command": "editor.action.showHover",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+j",
+		"command": "workbench.action.togglePanel"
+	},
+	// disable default Cursor keybind because it's annoying as fuck
+	{
+		"key": "ctrl+k",
+		"command": "-aipopup.action.modal.generate"
+	},
+	{
+		"key": "ctrl+alt+k",
+		"command": "aipopup.action.modal.generate",
+		"when": "editorFocus"
+	},
+	{
+		"key": "ctrl+alt+n",
+		"command": "explorer.newFolder",
+		"when": "explorerViewletFocus"
+	}
+]
