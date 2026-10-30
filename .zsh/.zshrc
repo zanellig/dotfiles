@@ -15,13 +15,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # zsh plugins
 plugins=(archlinux)
 
-# bun completions
-[ -s "/home/developer/.bun/_bun" ] && source "/home/developer/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # zoxide
 eval "$(zoxide init zsh --cmd cd)"
 
@@ -47,4 +40,3 @@ export NVM_DIR="$HOME/.nvm"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/home/developer/.lmstudio/bin"
 # End of LM Studio CLI section
-
