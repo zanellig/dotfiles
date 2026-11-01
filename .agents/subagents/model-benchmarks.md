@@ -1,5 +1,61 @@
 # Model and effort benchmark evidence
 
+## Snapshot: 2026-11-01, coding subagent experiment
+
+Mike Sulsenti compared coding subagents for an Opus 5.5 parent. The task was a
+Rust entropy coder for the Opus audio codec. This is one task with one run per
+configuration, retrieved November 1, 2026. The published screenshots identify
+Codex for Sol, Terra, and Astra, and Claude Code for Opus. Harness versions,
+model snapshot IDs, and a benchmark version are unrecorded.
+[Experiment and screenshots](https://x.com/mikesulsenti/status/2116686379723657537)
+[Task description](https://x.com/mikesulsenti/status/2116686903315456011)
+
+### Reported results
+
+Quality is the mean of four model judges, on a 0 to 10 scale. The panel comprises
+Opus 5.5 `xhigh`, Sol 6.1 `max`, Terra 6.1 `max`, and DeepSeek V4.1 Flash `max`.
+Some models judge their own output. Scores are subjective review results, separate
+from the hidden test suite. Sol and Terra rows use GPT-6.1; Opus uses Claude 5.5.
+[Scorecard](https://x.com/mikesulsenti/status/2116686379723657537/photo/1)
+
+| Model | Effort | Mean quality | Hidden tests passed |
+| --- | --- | --- | --- |
+| Sol | medium | 8.00 | 11/11 |
+| Sol | high | 8.75 | 11/11 |
+| Sol | xhigh | 9.00 | 11/11 |
+| Sol | max | 9.38 | 11/11 |
+| Terra | medium | 4.13 | 10/11 |
+| Terra | high | 5.00 | 10/11 |
+| Terra | xhigh | 7.38 | 11/11 |
+| Terra | max | 9.13 | 11/11 |
+| Opus | xhigh | 9.63 | 11/11 |
+
+The author's summary selects Sol `max` as the workhorse and Terra `max` as the
+value option. It reports Terra `max` at $0.20 and 3.5 minutes, and Sol `high` at
+$0.18 and 1.8 minutes. Sol `high` still needed test-isolation fixes. The cost chart
+uses standard-tier API list prices; these are not subscription quota measurements.
+Full repair-cycle costs and timings are unrecorded.
+[Summary](https://x.com/mikesulsenti/status/2116686379723657537/photo/4)
+[Cost chart](https://x.com/mikesulsenti/status/2116686379723657537/photo/2)
+
+### Routing judgment and limits
+
+This experiment supports trying `max` directly for substantive coding and keeping
+Terra `max` eligible for verified implementation. Sol's passing lower-effort
+entries still had quality gaps. Terra's `max` result differed substantially from
+its lower-effort results. These observations motivate the revised starting policy
+in [README.md](README.md); they do not establish a universal optimum.
+
+The author calls for more tasks before standardizing. The posted material does
+not provide a reproducible public task package, uncertainty estimates, or repeated
+runs. Several judges are also contestants. The results do not establish local
+quota use, architecture, orchestration, security-review, or visual taste quality.
+Measure completed work, review findings, repair effort, and elapsed time on local
+tasks to retain or revise these defaults. Generated-code runtime is a separate
+metric from agent completion time.
+[Author's limitations](https://x.com/mikesulsenti/status/2116686379723657537/photo/4)
+[Generated-code performance](https://x.com/mikesulsenti/status/2116686903315456011)
+
 ## Snapshot: 2026-10-30
 
 Current routing policy: [README.md](README.md). This snapshot records selected

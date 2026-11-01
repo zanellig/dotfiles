@@ -9,8 +9,9 @@ capability, token use, cost, or runtime across models.
 1. Identify the task, failure cost, verification strength, and latency budget.
 2. Apply availability, explicit user requests, and the provider routes below.
 3. Compare eligible model-and-effort configurations. Prefer the least costly
-   configuration that meets the task's reliability needs. Compare raising effort
-   with changing models; neither is an automatic next step.
+   configuration that meets the task's reliability needs, including review and
+   repair costs. Start at the task's recommended effort; lower-effort failures
+   are not a prerequisite for choosing `max`. Compare effort with changing models.
 4. Escalate when expected reductions in failure or rework justify the added cost.
    Ambiguity, weak verification, cross-domain changes, and costly rollback raise
    the required reliability. Extra reasoning does not replace verification.
@@ -52,12 +53,13 @@ configurations. Taste covers UI/UX, code quality, API design, and copy.
 ## Model-specific effort defaults
 
 These are starting policies, subject to task evidence and the cost comparison
-above. Verify that the resolved runtime supports the requested effort.
+above. The Sol and Terra coding defaults below target GPT-6.1. Verify that the
+resolved runtime supports the requested effort and revalidate after version changes.
 
 | Model | Starting effort and escalation |
 | --- | --- |
-| Sol | `medium` for bounded execution; `high` for harder or partly ambiguous work; `xhigh` for consequential review and ambiguous or cross-module tasks. Consider `max` for difficult work when the measured gain justifies its cost, including before switching to a more expensive model. Use `ultra` only with workload-specific evidence. |
-| Terra | `medium` for defined screen tasks and source-grounded drafting; `high` for bounded repository tracing. Trial `xhigh` for harder tracing or scoped implementation with strong verification. Compare it with Sol at lower effort. Use `max` after a workload-specific comparison. |
+| Sol | `max` for substantive implementation, refactors, and difficult coding diagnosis. Use `high` for small, well-specified fixes or latency-sensitive coding with strong checks; `medium` for mechanical edits and short, immediately checked tasks. Start at `xhigh` for architectural synthesis and consequential review; use `max` when those tasks require difficult implementation reasoning. Use `ultra` only with workload-specific evidence. |
+| Terra | `max` when selected for scoped implementation with strong verification. Compare this configuration with Sol for value; Terra's lower-effort coding results do not establish its `max` capability. Keep `medium` for defined screen tasks and source-grounded drafting, `high` for bounded repository tracing, and `xhigh` for harder verified tracing. |
 | Luna | `high` for mechanical work. Consider `xhigh` or `max` with strong verification and an acceptable runtime budget. Low API cost does not imply low latency or sufficient capability. Use `low` or `medium` only for deterministic lookup or tiny, immediately checked work. |
 | Opus | `medium` for bounded implementation with clear verification; `high` for interactive work, planning, specs, and ambiguous execution; `xhigh` for contract decisions, ADRs, and the hardest long-horizon or taste-critical work. Reserve `max` for a demonstrated task benefit; the current aggregate gain over `xhigh` is small relative to its cost. |
 | Sonnet | `high` for scoped execution; `xhigh` for harder work where its substantial capability gain justifies the added cost. Compare with Opus and eligible OpenAI configurations before assuming Sonnet is the inexpensive option. |
@@ -69,12 +71,18 @@ above. Verify that the resolved runtime supports the requested effort.
 | Model | Default use | Avoid or escalate when |
 | --- | --- | --- |
 | Luna | Mechanical lookup, inventories, log/test analysis, summaries, and mechanical edits with strong verification | Ambiguity, cross-module reasoning, weak tests, costly rework, or a tight latency budget |
-| Terra | Provisional bounded repository tracing, defined computer workflows, source-grounded drafting, and scoped verified fixes | Architectural decisions, ambiguous diagnosis, consequential review, orchestration, or weak verification |
+| Terra | Scoped features, fixes, and refactors with strong verification; bounded repository tracing, defined computer workflows, and source-grounded drafting | Architectural decisions, ambiguous diagnosis, consequential review, orchestration, or weak verification |
 | Sol | Primary OpenAI execution, architecture, difficult diagnosis, synthesis, orchestration, and consequential review | A less costly eligible configuration meets the reliability requirement |
 | Fable | Unavailable; retain as a candidate for major UI direction and taste evaluation | General reasoning or orchestration claims need current evidence |
 | Opus | Default Claude executor; UI work and taste/code/API/copy review | Compare higher effort with Sonnet and other eligible configurations before escalation |
 | Sonnet | Scoped execution, UI variants, debugging, and tests | Ambiguity, taste-critical work, or long-horizon work requires a stronger configuration |
 | Astra | Hardest unsupervised reasoning when explicitly requested | Use Sol for default work |
+
+Coding: judge difficulty by the reasoning required. Algorithm design, edge cases,
+and test design can justify `max` within one module. Review the
+implementation, tests, and documentation before accepting the result. Compare
+Sol and Terra on representative completed tasks, including repairs and elapsed
+time, before treating the external coding experiment as a measured local advantage.
 
 Computer use: trial Terra `medium` for defined workflows with a checkable saved
 result. Use Sol `medium` or higher when planning or diagnosis is ambiguous. Use
@@ -98,8 +106,9 @@ These rules constrain eligible models before comparing configurations:
 - OpenAI to Anthropic: use Sonnet by default. Use Opus when ambiguity,
   architectural tradeoffs, or costly errors require deeper judgment. Choose
   effort using the model-specific guidance and compare actual configuration cost.
-- Anthropic to OpenAI: use Sol by default. Trial Terra for its bounded routes;
-  retain Sol for architectural synthesis, consequential review, and orchestration.
+- Anthropic to OpenAI: use Sol by default. Compare Terra for verified implementation
+  and its other bounded routes using the effort defaults above. Retain Sol for
+  architectural synthesis, consequential review, and orchestration.
 
 Use the latest stable version available to the runtime and account, including
 when CLI examples name an older version. Resolve at delegation time and keep that
@@ -118,7 +127,7 @@ Example usage:
 |        | Interactive                                                                 | One-shot                                                                       | Resume                                                                                   |
 | ------ | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
 | Claude | `claude --dangerously-skip-permissions --model opus --effort high "{task}"` | `claude --dangerously-skip-permissions -p --model opus --effort high "{task}"` | `claude --dangerously-skip-permissions -c` or `claude --dangerously-skip-permissions -r` |
-| Codex  | `codex --yolo -m gpt-6.1-sol -c 'model_reasoning_effort="high"' "{task}"`   | `codex --yolo exec -m gpt-6.1-sol -c 'model_reasoning_effort="high"' "{task}"` | `codex --yolo resume --last`                                                             |
+| Codex  | `codex --yolo -m gpt-6.1-sol -c 'model_reasoning_effort="max"' "{task}"`   | `codex --yolo exec -m gpt-6.1-sol -c 'model_reasoning_effort="max"' "{task}"` | `codex --yolo resume --last`                                                             |
 
 > For `codex` subagents you should set the `CODEX_HOME` environment variable to `~/.codex_p` if not already set by the environment, as that is the directory that holds our active paid subscription.
 
