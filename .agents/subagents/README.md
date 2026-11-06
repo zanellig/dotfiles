@@ -131,6 +131,8 @@ Example usage:
 
 > Call Codex as `command codex`. `~/.zshrc` aliases `codex` to `codex --yolo`, and Claude's Bash tool loads that alias, so a bare `codex --yolo` fails with a duplicate-flag error and a bare `codex exec -s read-only` silently runs with `--yolo`. An absolute binary path from `codex-sol.py resolve` also avoids the alias.
 >
+> Codex waits for stdin to end before it starts. With a prompt file, pass the file as stdin: `command codex --yolo exec -m ... - < "$prompt_file"`. With the prompt as an argument, including `"$(cat "$prompt_file")"`, close stdin with `</dev/null`.
+>
 > A timeout, nonzero exit, or missing final message means the review did not finish. Never treat it as approval.
 >
 > For `codex` subagents you should set the `CODEX_HOME` environment variable to `~/.codex_p` if not already set by the environment, as that is the directory that holds our active paid subscription.
