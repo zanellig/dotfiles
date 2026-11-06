@@ -131,33 +131,11 @@ Example usage:
 
 > Call Codex as `command codex`. `~/.zshrc` aliases `codex` to `codex --yolo`, and Claude's Bash tool loads that alias, so a bare `codex --yolo` fails with a duplicate-flag error and a bare `codex exec -s read-only` silently runs with `--yolo`. An absolute binary path from `codex-sol.py resolve` also avoids the alias.
 >
+> A timeout, nonzero exit, or missing final message means the review did not finish. Never treat it as approval.
+>
 > For `codex` subagents you should set the `CODEX_HOME` environment variable to `~/.codex_p` if not already set by the environment, as that is the directory that holds our active paid subscription.
 
 Choose model and effort together using this guide. Prompts should concisely state scope, file ownership, verification, and expected output.
-
-### Codex one-shot process and review handling
-
-- Close stdin with `</dev/null` when the prompt is an argument, including for
-  background tasks. Codex also reads piped stdin as additional context and
-  waits for EOF before starting. For a prompt file, use
-  `command codex exec ... - < "$brief_file"` instead; the file supplies the prompt and EOF.
-- Give each review a deadline. Start with 15 minutes unless its scope or the
-  user's latency budget calls for another limit. Run it under a timeout that
-  can stop its process group, and retain the actual exit status. Save progress
-  output separately from the final message with `--output-last-message`, using
-  unique paths for each attempt. Remove temporary files after consuming them.
-- Use the caller's background completion notification when available. If the
-  review seems stalled, inspect its process and progress log before intervening.
-  `Reading additional input from stdin...` alone is normal when followed by
-  startup; if it remains the only output and stdin is open, stop that specific
-  process group and retry once with stdin closed. Do not start a duplicate while
-  the first review may still be running.
-- A timeout, nonzero exit, or missing final message is an incomplete review,
-  not approval. Report the outcome and any usable partial findings; investigate
-  before retrying. A deadline does not mean a review was hung.
-- For a read-only reviewer, run `command codex exec -s read-only` without `--yolo` and check
-  the startup output for the actual sandbox. If it is not read-only, stop and
-  resolve the mismatch before relying on sandbox isolation.
 
 ## Version control
 
