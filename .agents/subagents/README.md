@@ -127,8 +127,10 @@ Example usage:
 |        | Interactive                                                                 | One-shot                                                                       | Resume                                                                                   |
 | ------ | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
 | Claude | `claude --dangerously-skip-permissions --model opus --effort high "{task}"` | `claude --dangerously-skip-permissions -p --model opus --effort high "{task}"` | `claude --dangerously-skip-permissions -c` or `claude --dangerously-skip-permissions -r` |
-| Codex  | `codex --yolo -m gpt-6.1-sol -c 'model_reasoning_effort="max"' "{task}"`   | `codex --yolo exec -m gpt-6.1-sol -c 'model_reasoning_effort="max"' "{task}" </dev/null` | `codex --yolo resume --last`                                                             |
+| Codex  | `command codex --yolo -m gpt-6.1-sol -c 'model_reasoning_effort="max"' "{task}"`   | `command codex --yolo exec -m gpt-6.1-sol -c 'model_reasoning_effort="max"' "{task}" </dev/null` | `command codex --yolo resume --last`                                                             |
 
+> Call Codex as `command codex`. `~/.zshrc` aliases `codex` to `codex --yolo`, and Claude's Bash tool loads that alias, so a bare `codex --yolo` fails with a duplicate-flag error and a bare `codex exec -s read-only` silently runs with `--yolo`. An absolute binary path from `codex-sol.py resolve` also avoids the alias.
+>
 > For `codex` subagents you should set the `CODEX_HOME` environment variable to `~/.codex_p` if not already set by the environment, as that is the directory that holds our active paid subscription.
 
 Choose model and effort together using this guide. Prompts should concisely state scope, file ownership, verification, and expected output.
@@ -138,7 +140,7 @@ Choose model and effort together using this guide. Prompts should concisely stat
 - Close stdin with `</dev/null` when the prompt is an argument, including for
   background tasks. Codex also reads piped stdin as additional context and
   waits for EOF before starting. For a prompt file, use
-  `codex exec ... - < "$brief_file"` instead; the file supplies the prompt and EOF.
+  `command codex exec ... - < "$brief_file"` instead; the file supplies the prompt and EOF.
 - Give each review a deadline. Start with 15 minutes unless its scope or the
   user's latency budget calls for another limit. Run it under a timeout that
   can stop its process group, and retain the actual exit status. Save progress
@@ -153,7 +155,7 @@ Choose model and effort together using this guide. Prompts should concisely stat
 - A timeout, nonzero exit, or missing final message is an incomplete review,
   not approval. Report the outcome and any usable partial findings; investigate
   before retrying. A deadline does not mean a review was hung.
-- For a read-only reviewer, request `-s read-only` without `--yolo` and check
+- For a read-only reviewer, run `command codex exec -s read-only` without `--yolo` and check
   the startup output for the actual sandbox. If it is not read-only, stop and
   resolve the mismatch before relying on sandbox isolation.
 
