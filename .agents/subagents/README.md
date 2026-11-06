@@ -127,8 +127,12 @@ Example usage:
 |        | Interactive                                                                 | One-shot                                                                       | Resume                                                                                   |
 | ------ | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
 | Claude | `claude --dangerously-skip-permissions --model opus --effort high "{task}"` | `claude --dangerously-skip-permissions -p --model opus --effort high "{task}"` | `claude --dangerously-skip-permissions -c` or `claude --dangerously-skip-permissions -r` |
-| Codex  | `codex --yolo -m gpt-6.1-sol -c 'model_reasoning_effort="max"' "{task}"`   | `codex --yolo exec -m gpt-6.1-sol -c 'model_reasoning_effort="max"' "{task}"` | `codex --yolo resume --last`                                                             |
+| Codex  | `command codex --yolo -m gpt-6.1-sol -c 'model_reasoning_effort="max"' "{task}"`   | `command codex --yolo exec -m gpt-6.1-sol -c 'model_reasoning_effort="max"' "{task}" </dev/null` | `command codex --yolo resume --last`                                                             |
 
+> Call Codex as `command codex`. `~/.zshrc` aliases `codex` to `codex --yolo`, and Claude's Bash tool loads that alias, so a bare `codex --yolo` fails with a duplicate-flag error and a bare `codex exec -s read-only` silently runs with `--yolo`. An absolute binary path from `codex-sol.py resolve` also avoids the alias.
+>
+> A timeout, nonzero exit, or missing final message means the review did not finish. Never treat it as approval.
+>
 > For `codex` subagents you should set the `CODEX_HOME` environment variable to `~/.codex_p` if not already set by the environment, as that is the directory that holds our active paid subscription.
 
 Choose model and effort together using this guide. Prompts should concisely state scope, file ownership, verification, and expected output.
